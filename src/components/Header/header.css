@@ -1,4 +1,17 @@
 .header {
     grid-area: header;
     border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 12px;
+}
+.header_title {
+    flex:2;
+}
+.header_left {
+    margin-right: auto;
+}
+.header_right {
+    margin-left: auto;
 }
