@@ -13,6 +13,14 @@ export default function Column({ day }) {
     .toLocaleDateString("en-US", { weekday: "long" })
     .toLowerCase();
   const [workOuts, setWorkOuts] = useState([]);
+  const exercises = ["bench, brah", "dl, dude", "squat, man", "pelvic thrust!", "curl, coolio", "plank, punk"]
+
+    const handleClick = () => {
+        const randomNum = Math.floor(Math.random()*exercises.length);
+        setWorkOuts(oldWorkOuts => [...oldWorkOuts, exercises[randomNum]])
+
+    }
+  
 
   return (
     <div className={`${dayName} column`}>
@@ -30,7 +38,7 @@ export default function Column({ day }) {
         >
           <AiOutlinePlusCircle
             className="column__plus"
-            onClick={() => setWorkOuts((arr) => [...arr, "bench, brah"])}
+            onClick={handleClick}
           />
         </IconContext.Provider>
       </div>
