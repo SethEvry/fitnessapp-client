@@ -7,20 +7,19 @@ import { Workout } from "..";
 //react-icons
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
+import exercises from './exercises.json';
 
 export default function Column({ day }) {
   const dayName = day
     .toLocaleDateString("en-US", { weekday: "long" })
     .toLowerCase();
   const [workOuts, setWorkOuts] = useState([]);
-  const exercises = ["bench, brah", "dl, dude", "squat, man", "pelvic thrust!", "curl, coolio", "plank, punk"]
 
-    const handleClick = () => {
-        const randomNum = Math.floor(Math.random()*exercises.length);
-        setWorkOuts(oldWorkOuts => [...oldWorkOuts, exercises[randomNum]])
 
-    }
-  
+  const handleClick = () => {
+    const randomNum = Math.floor(Math.random() * exercises.length);
+    setWorkOuts((oldWorkOuts) => [...oldWorkOuts, exercises[randomNum]]);
+  };
 
   return (
     <div className={`${dayName} column`}>
@@ -36,10 +35,7 @@ export default function Column({ day }) {
             className: "column__plus",
           }}
         >
-          <AiOutlinePlusCircle
-            className="column__plus"
-            onClick={handleClick}
-          />
+          <AiOutlinePlusCircle className="column__plus" onClick={handleClick} />
         </IconContext.Provider>
       </div>
     </div>

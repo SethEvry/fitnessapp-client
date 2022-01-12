@@ -4,11 +4,12 @@
   padding: 10px;
   line-height: 12px;
   border-right: 1px solid black;
+  /* flex */
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .column:nth-child(8) {
   border-right: none;
@@ -17,11 +18,18 @@
 .column__header {
   display: flex;
   border-bottom: 1px solid black;
+  margin-bottom: 5px;
   justify-content: center;
   width: 100%;
 }
 .column__content {
+  width: 100%;
   flex: 1;
+  /* flex */
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .column__plus {

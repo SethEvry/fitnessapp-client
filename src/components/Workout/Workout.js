@@ -1,12 +1,9 @@
 import "./workout.css";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 
-//react-icons
-import { IconContext } from "react-icons/lib";
-import { AiFillCloseCircle } from 'react-icons/ai'
+import Modal from "../Modal/Modal";
 
-export default function Workout({ workOut, children }) {
+export default function Workout({ workOut }) {
   const [isModal, setIsModal] = useState(false);
 
   const handleModal = () => {
@@ -15,30 +12,22 @@ export default function Workout({ workOut, children }) {
 
   return (
     <>
-    <div className="workout" onClick={handleModal}>
-      {workOut}
-    </div>
-    {isModal?
-    ReactDOM.createPortal(
-      <>
-        <div className="modal-wrapper"></div>
-        <div className="modal">
-        <IconContext.Provider
-        value={{
-            size: '2em',
-            className: 'modal-close'
-        }}
-        >
-            <AiFillCloseCircle onClick={handleModal} />
-        </IconContext.Provider>
-          <div className="modal-inner"><p>{workOut}</p>
-          </div>
-        </div>
-      </>,
-
-      document.body
-    ) : null}
+      <div className="workout" onClick={handleModal}>
+        {workOut.title}
+      </div>
+      {isModal ? (
+        <Modal handleModal={handleModal}>
+          {workOut.sets && workOut.reps ? (
+            <div className="sets">
+              <h1>
+                {workOut.sets} X {workOut.reps}{" "}
+              </h1>
+            </div>
+          ) : null}
+          <h2>{workOut.title}</h2>
+          <p>{workOut.description}</p>
+        </Modal>
+      ) : null}
     </>
-  )
-  
+  );
 }

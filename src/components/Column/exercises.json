@@ -1,0 +1,38 @@
+[
+    {
+      "title": "bench, brah",
+      "description": "<brah>, it's when you bench, </brah>",
+      "sets": 4,
+      "reps": 6
+    },
+    {
+      "title": "dl, dude",
+      "description": "<dl>, it's when you dl, </dl>",
+      "sets": 3,
+      "reps": 1
+    },
+    {
+      "title": "squat, man",
+      "description": "<man>, it's when you squat, </man>",
+      "sets": 3,
+      "reps": 10
+    },
+    {
+      "title": "pelvic thrust!, person",
+      "description": "<person>, it's when you unghhhhh, </person>",
+      "sets": 5,
+      "reps": 120
+    },
+    {
+      "title": "curl, coolio",
+      "description": "<coolio>, it's when you curl, </coolio>",
+      "sets": 4,
+      "reps": 8
+    },
+    {
+      "title": "plank, punk",
+      "description": "<punk>, it's when you plank, </punk>",
+      "sets": 4,
+      "reps": "30 seconds"
+    }
+  ]
