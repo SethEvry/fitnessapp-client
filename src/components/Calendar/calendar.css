@@ -20,6 +20,14 @@
     gap: 5px;
     flex-wrap: wrap;
 }
+.calendar_week {
+    display:flex;
+    column-gap: 5px;
+}
+.calendar_week:hover {
+    background-color: rgba(30, 255, 0, 0.5);
+    height: 60px;
+}
 
 .calendar_block {
     height: 60px;

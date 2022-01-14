@@ -1,21 +1,37 @@
-import { useContext } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { Modal } from "..";
 import "./calendar.css";
 import { uid } from "uid";
 import { CalendarContext } from "../../context/CalendarContext";
 
 const Calendar = () => {
-  const { currentDate, calendar } = useContext(CalendarContext);
+  const { currentDate, setCurrentDate, calendar, today } = useContext(CalendarContext);
+
+  const [blocks, setBlocks] = useState([]);
+
 
   const month = currentDate.toLocaleDateString("en-US", { month: "long" });
   const year = currentDate.getFullYear();
 
-  const generateBlocks = () => {
+  const handleClick = useCallback((date) => {
+    setCurrentDate(date);
+  }, [setCurrentDate])
+
+  const generateBlocks = useCallback(() => {
     if (calendar) {
-      const blocks = calendar.map((date) => {
+      let blockz = [];
+      calendar.forEach(week => {
+        const block = (<div className="calendar_week" key={uid()} >{week.map(date => {
+        const locale = 'en-US'
+        const options = {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit"
+        }
         return (
           <div
             key={uid()}
+            onClick={() => handleClick(date)}
             className={
               `calendar_block` +
               `${
@@ -24,19 +40,25 @@ const Calendar = () => {
                   : ""
               }` +
               `${
-                date.getDate() === currentDate.getDate() ? " current_date " : ""
+                date.toLocaleDateString(locale, options) === today.toLocaleDateString(locale, options) ? " current_date " : ""
               }`
             }
           >
             <p>{date.getDate()}</p>
           </div>
         );
-      });
-      return blocks;
+      })}</div>)
+      blockz.push(block);
+    })
+      setBlocks(blockz);
     } else {
-      return <p>Loading...</p>;
+      setBlocks([<p>Loading...</p>])
     }
-  };
+  }, [setBlocks, calendar, currentDate, today, handleClick]);
+
+  useEffect(() => {
+    generateBlocks();
+  }, [generateBlocks]);
 
   return (
     <Modal>
@@ -46,7 +68,9 @@ const Calendar = () => {
             {month} - {year}
           </h2>
         </div>
-        <div className="calendar_main">{generateBlocks()}</div>
+        <div className="calendar_main">{
+          blocks.map((block) => block)
+        }</div>
       </div>
     </Modal>
   );

@@ -9,16 +9,6 @@ const CalendarContextProvider = ({ children }) => {
   //Current Date Selected
   const [currentDate, setCurrentDate] = useState(today);
 
-  //First Day of Month - date object
-  const [firstDay, setFirstDay] = useState(
-    new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-  );
-
-  //Last Day of Month
-  const [lastDay, setLastDay] = useState(
-    new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0)
-  );
-
   //monthly calendar array
   const [calendar, setCalendar] = useState([]);
 
@@ -32,13 +22,31 @@ const CalendarContextProvider = ({ children }) => {
    *
    */
   const generateCalendar = useCallback(() => {
+    const firstDay = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      1
+    );
+    const lastDay = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      0
+    );
     const day = [firstDay.getDay(), lastDay.getDay()];
+    setCalendar([]);
+    let cal = []
     for (let i = -day[0] + 1; i < lastDay.getDate() + (7 - day[1]); i++) {
       let newDate = new Date(firstDay);
-      newDate.setDate(i);
-      setCalendar((oldCalendar) => [...oldCalendar, newDate]);
-    }
-  }, [firstDay, lastDay, setCalendar]);
+        newDate.setDate(i);
+        cal.push(newDate)
+        //setCalendar((oldCalendar) => [...oldCalendar, newDate]);
+      }
+      let newCal = []
+      while(cal.length > 0) {
+        newCal.push(cal.splice(0,7));
+      }
+      setCalendar(newCal)
+  }, [currentDate, setCalendar]);
 
   /**
    * generates a week of dates based on the current Date
@@ -58,32 +66,31 @@ const CalendarContextProvider = ({ children }) => {
    * Puts currentDate a week forwards or back
    */
   const handleWeekChange = (option) => {
-      const change = option === "LEFT" ? -1 : 1;
-      const date = currentDate.getDate();
-      const newDate = new Date(currentDate);
-      newDate.setDate(date + 7 * change);
-      setCurrentDate(newDate);
-  }
+    const change = option === "LEFT" ? -1 : 1;
+    const date = currentDate.getDate();
+    const newDate = new Date(currentDate);
+    newDate.setDate(date + 7 * change);
+    setCurrentDate(newDate);
+  };
 
   // Initial calendar generation
 
   useEffect(() => {
     generateCalendar();
-  }, [generateCalendar]);
-
-  useEffect(() => {
     generateWeeklyCalendar();
-  }, [generateWeeklyCalendar]);
+  }, [generateCalendar, generateWeeklyCalendar]);
 
   return (
     <CalendarContext.Provider
       value={{
+        today,
         currentDate,
+        setCurrentDate,
         calendar,
         generateCalendar,
         weeklyCalendar,
         generateWeeklyCalendar,
-        handleWeekChange
+        handleWeekChange,
       }}
     >
       {children}
