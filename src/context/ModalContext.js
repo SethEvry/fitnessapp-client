@@ -8,6 +8,13 @@ const initialState = {
   isCalendar: false,
 };
 
+/**
+ * Controls different modals and their payloads
+ * 
+ * @param {Object} state 
+ * @param {Object} action 
+ * @returns void
+ */
 const reducer = (state, action) => {
   switch (action.type) {
     case "VIEW":
