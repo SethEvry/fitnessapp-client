@@ -10,13 +10,13 @@ import CalendarContextProvider from "./context/CalendarContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarContextProvider>
-      <WorkoutContextProvider>
-        <ModalContextProvider>
+    <ModalContextProvider>
+      <CalendarContextProvider>
+        <WorkoutContextProvider>
           <App />
-        </ModalContextProvider>
-      </WorkoutContextProvider>
-    </CalendarContextProvider>
+        </WorkoutContextProvider>
+      </CalendarContextProvider>
+    </ModalContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

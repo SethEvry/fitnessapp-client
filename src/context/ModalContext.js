@@ -14,7 +14,7 @@ const reducer = (state, action) => {
       return { isModal: true, workOut: action.payload };
 
     case "CLOSE":
-      return { isModal: false, addingWorkOut: false };
+      return { isModal: false, addingWorkOut: false, isCalendar: false };
 
     case "ADDING":
       return { addingWorkOut: true, date: action.payload };
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
       return { isCalendar: true };
 
     default:
-      throw new Error();
+      throw new Error('Wow oops');
   }
 };
 

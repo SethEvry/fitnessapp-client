@@ -3,9 +3,11 @@ import { Modal } from "..";
 import "./calendar.css";
 import { uid } from "uid";
 import { CalendarContext } from "../../context/CalendarContext";
+import { ModalContext } from "../../context/ModalContext";
 
 const Calendar = () => {
   const { currentDate, setCurrentDate, calendar, today } = useContext(CalendarContext);
+  const { dispatch } = useContext(ModalContext);
 
   const [blocks, setBlocks] = useState([]);
 
@@ -15,7 +17,8 @@ const Calendar = () => {
 
   const handleClick = useCallback((date) => {
     setCurrentDate(date);
-  }, [setCurrentDate])
+    dispatch({type:"CLOSE"});
+  }, [setCurrentDate, dispatch])
 
   const generateBlocks = useCallback(() => {
     if (calendar) {
