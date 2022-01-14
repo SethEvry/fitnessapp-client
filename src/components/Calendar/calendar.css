@@ -17,16 +17,16 @@
     flex: 1;
     max-width: 100%;
     display: flex;
-    gap: 5px;
     flex-wrap: wrap;
 }
 .calendar_week {
+    width: 100%;
+    padding: 4px 0px;
     display:flex;
-    column-gap: 5px;
+    justify-content: center;
 }
 .calendar_week:hover {
     background-color: rgba(30, 255, 0, 0.5);
-    height: 60px;
 }
 
 .calendar_block {
