@@ -1,5 +1,6 @@
 import "./column.css";
-import { useState } from "react";
+import { useContext } from "react";
+import { uid } from 'uid';
 
 //component
 import { Workout } from "..";
@@ -7,18 +8,20 @@ import { Workout } from "..";
 //react-icons
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { IconContext } from "react-icons/lib";
-import exercises from './exercises.json';
+
+import { ModalContext } from "../../context/ModalContext";
+import { WorkoutContext } from "../../context/WorkoutContext";
 
 export default function Column({ day }) {
   const dayName = day
     .toLocaleDateString("en-US", { weekday: "long" })
     .toLowerCase();
-  const [workOuts, setWorkOuts] = useState([]);
-
+  const date = day.toISOString().slice(0, 10);
+  const { workOuts } = useContext(WorkoutContext);
+  const { dispatch } = useContext(ModalContext);
 
   const handleClick = () => {
-    const randomNum = Math.floor(Math.random() * exercises.length);
-    setWorkOuts((oldWorkOuts) => [...oldWorkOuts, exercises[randomNum]]);
+    dispatch({ type: "ADDING", payload: date });
   };
 
   return (
@@ -27,9 +30,11 @@ export default function Column({ day }) {
         <h3>{day.toLocaleDateString("en-US")}</h3>
       </div>
       <div className="column__content">
-        {workOuts.map((workOut, index) => (
-          <Workout key={index} workOut={workOut} />
-        ))}
+        {workOuts
+          .filter((workOut) => workOut.date === date)
+          .map((workOut) => (
+            <Workout key={uid()} workOut={workOut} />
+          ))}
         <IconContext.Provider
           value={{
             className: "column__plus",

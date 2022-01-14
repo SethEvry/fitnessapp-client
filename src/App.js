@@ -1,31 +1,36 @@
-import './app.css';
+import { useContext } from "react";
+import "./app.css";
 
 //components
-import {Header, Column, Footer} from './components'
+import { Header, Column, Footer, AddWorkout, Calendar } from "./components";
+import { CalendarContext } from "./context/CalendarContext";
+import { ModalContext } from "./context/ModalContext";
 
 function App() {
-  let week = [];
-  for(let i = 0; i < 7; i++) {
-      const today = new Date();
-      const day = today.getDay();
-      let iDate = new Date(today);
-      iDate.setDate(iDate.getDate() - day + i);
-      week.push(iDate);
-  }
+  const { state } = useContext(ModalContext);
+  const { weeklyCalendar } = useContext(CalendarContext);
 
   return (
     <div className="App">
       <div className="container">
-        <Header />
-        <Column day={week[0]} />
-        <Column day={week[1]} />
-        <Column day={week[2]} />
-        <Column day={week[3]} />
-        <Column day={week[4]} />
-        <Column day={week[5]} />
-        <Column day={week[6]} />
-        <Footer />
+        {weeklyCalendar.length === 7 ? (
+          <>
+            <Header />
+            <Column day={weeklyCalendar[0]} />
+            <Column day={weeklyCalendar[1]} />
+            <Column day={weeklyCalendar[2]} />
+            <Column day={weeklyCalendar[3]} />
+            <Column day={weeklyCalendar[4]} />
+            <Column day={weeklyCalendar[5]} />
+            <Column day={weeklyCalendar[6]} />
+            <Footer />
+          </>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
+      {state.addingWorkOut ? <AddWorkout date={state.date} /> : null}
+      {state.isCalendar ? <Calendar /> : null}
     </div>
   );
 }

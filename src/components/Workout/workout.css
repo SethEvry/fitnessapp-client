@@ -7,6 +7,11 @@
     cursor: pointer;
 }
 
+.workout-title {
+    border-bottom: 1px solid black;
+    padding-bottom: 8px;
+}
+
 .sets {
     padding: 4px 24px;
     background-color: black;
