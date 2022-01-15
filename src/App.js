@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import "./app.css";
+import { uid } from 'uid'
 
 //components
 import { Header, Column, Footer, AddWorkout, Calendar } from "./components";
@@ -16,7 +17,7 @@ function App() {
         {weeklyCalendar.length === 7 ? (
           <>
             <Header />
-            {weeklyCalendar.map(day => <Column day={day} />)}
+            {weeklyCalendar.map(day => <Column day={day} key={uid()} />)}
             <Footer />
           </>
         ) : (
