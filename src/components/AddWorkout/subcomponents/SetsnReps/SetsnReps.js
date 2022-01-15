@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { uid } from "uid";
 
+import './setsnreps.css';
+
 //react-icons
-import { GrCaretNext } from "react-icons/gr";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
-import { IconContext } from "react-icons/lib";
+import { AiOutlineMinusCircle } from "react-icons/ai";
+// import { IconContext } from "react-icons/lib";
 
 const SetsnReps = ({ sets, setSets, setStep }) => {
   const [isError, setIsError] = useState(false);
@@ -30,15 +31,11 @@ const reset = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (reps && weight && type === "WEIGHT") {
-      
       setSets((oldSets) => [...oldSets, `${reps} - ${weight} lbs`]);
       reset();
-      setStep(2);
     } else if (time && type === "TIME") {
-
       setSets((oldSets) => [...oldSets, `${time} seconds`]);
       reset();
-      setStep(2);
     } else if(sets.length) {
       reset();
       setStep(2);
@@ -46,19 +43,6 @@ const reset = () => {
       setIsError(true);
       setErrors([reps || "reps", weight || "weight"]);
     }
-  };
-  const handleAdditional = (e) => {
-    e.preventDefault();
-    if (type === "WEIGHT" && reps && weight) {
-      setSets((oldSets) => [...oldSets, `${reps} - ${weight} lbs`]);
-      reset();
-    } else if (type === "TIME" && time) {
-      setSets((oldSets) => [...oldSets, `${time} seconds`]);
-      reset();
-    }
-    setReps("");
-    setWeight("");
-    setTime("");
   };
   return (
     <>
@@ -116,14 +100,7 @@ const reset = () => {
             ),
           }[type]
         }
-        <IconContext.Provider value={{ className: "setsnreps-next" }}>
-          <AiOutlinePlusCircle onClick={handleAdditional} />
-        </IconContext.Provider>
-        <button>
-          <IconContext.Provider value={{ className: "setsnreps-next" }}>
-            <GrCaretNext />
-          </IconContext.Provider>
-        </button>
+        <button className="setsnreps_button">Submit</button>
       </form>
     </>
   );
