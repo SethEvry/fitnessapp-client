@@ -1,6 +1,6 @@
 .header {
     grid-area: header;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
     align-items: center;

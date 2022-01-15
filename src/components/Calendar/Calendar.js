@@ -32,6 +32,9 @@ const Calendar = () => {
   const [month, setMonth] = useState(currentDate.toLocaleDateString("en-US", { month: "long" }))
   const [year, setYear] = useState(currentDate.getFullYear())
 
+  //for bar above
+  const weekdays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
   //Sets Current Date to the clicked then closes modal
   const handleClick = useCallback(
     (date) => {
@@ -159,6 +162,7 @@ const Calendar = () => {
               </IconContext.Provider>
             </h2>)}
           </div>
+          <div className="calendar_weekdays">{weekdays.map(weekday => <p key={uid()}>{weekday}</p> )}</div>
           <div className="calendar_main">{blocks.map((block) => block)}</div>
         </div>
       ) : (

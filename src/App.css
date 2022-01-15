@@ -1,10 +1,22 @@
+:root {
+    --bg-color: #6F523B;
+    --bg2-color: #A56336;
+    --text-color:#143642;
+    --border-color: #201209;
+    --ed-color: #935E38;
+    --cd-color: #143642;
+    --hl-color: #b77035;
+}
 * {
     box-sizing: border-box;
+    background-color: var(--bg2-color);
+    color:var(--text-color);
 }
 .App {
     display:flex;
     height: 100vh;
     align-items: center;
+    background-color: var(--bg-color);
 }
 .container {
     margin: 0 50px;
@@ -17,6 +29,6 @@
     "header header header header header header header"
     "sunday monday tuesday wednesday thursday friday saturday"
     "footer footer footer footer footer footer footer";
-    border: 1px solid black;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px var(--border-color);
 }
