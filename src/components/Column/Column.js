@@ -33,7 +33,7 @@ export default function Column({ day }) {
   return (
     <div className={`${dayName} column ${current}`}>
       <div className="column__header">
-        <h3>{day.toLocaleDateString("en-US")}</h3>
+        <h3>{day.toLocaleDateString('en-US', {weekday:"short", day:"2-digit", month:"2-digit", year:"numeric"})}</h3>
       </div>
       <div className="column__content">
         {workOuts
