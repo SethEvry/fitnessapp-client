@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import exercises from '../exercises.json'
 import { uid } from 'uid';
 
@@ -8,7 +8,17 @@ export const WorkoutContext = createContext();
 
 
 const WorkoutContextProvider = ({children}) => {
-    const [workOuts, setWorkOuts] = useState(formatedExercises);
+    const [workOuts, setWorkOuts] = useState([]);
+
+    useEffect(()=>{
+        if(localStorage.getItem('workOuts')){
+            setWorkOuts(JSON.parse(localStorage.getItem('workOuts')));
+        }
+    }, [])
+    useEffect(()=>{
+        localStorage.setItem("workOuts", JSON.stringify(workOuts));
+
+    },[workOuts])
 
     return (
         <WorkoutContext.Provider value={{workOuts, setWorkOuts}}>

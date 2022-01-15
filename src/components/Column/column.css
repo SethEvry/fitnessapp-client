@@ -15,6 +15,10 @@
   border-right: none;
 }
 
+.column_current {
+  background-color: aliceblue;
+}
+
 .column__header {
   display: flex;
   border-bottom: 1px solid black;

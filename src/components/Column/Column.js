@@ -1,6 +1,6 @@
 import "./column.css";
 import { useContext } from "react";
-import { uid } from 'uid';
+import { uid } from "uid";
 
 //component
 import { Workout } from "..";
@@ -11,6 +11,7 @@ import { IconContext } from "react-icons/lib";
 
 import { ModalContext } from "../../context/ModalContext";
 import { WorkoutContext } from "../../context/WorkoutContext";
+import { CalendarContext } from "../../context/CalendarContext";
 
 export default function Column({ day }) {
   const dayName = day
@@ -19,13 +20,18 @@ export default function Column({ day }) {
   const date = day.toISOString().slice(0, 10);
   const { workOuts } = useContext(WorkoutContext);
   const { dispatch } = useContext(ModalContext);
+  const { today } = useContext(CalendarContext);
+  const current =
+    day.toLocaleDateString("en-US") === today.toLocaleDateString("en-US")
+      ? "column_current"
+      : "";
 
   const handleClick = () => {
     dispatch({ type: "ADDING", payload: date });
   };
 
   return (
-    <div className={`${dayName} column`}>
+    <div className={`${dayName} column ${current}`}>
       <div className="column__header">
         <h3>{day.toLocaleDateString("en-US")}</h3>
       </div>

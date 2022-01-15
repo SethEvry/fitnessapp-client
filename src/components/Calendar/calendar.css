@@ -11,6 +11,16 @@
     display: flex;
     justify-content: center;
     width:100%;
+    column-gap: 30px;
+}
+.calendar_header h2 {
+    position:relative;
+}
+.calendar_header .calendar_edit {
+    cursor: pointer;
+    position: absolute;
+    top: 2px;
+    right:-15px;
 }
 
 .calendar_main {

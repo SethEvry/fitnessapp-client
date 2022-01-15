@@ -73,6 +73,36 @@ const CalendarContextProvider = ({ children }) => {
     setCurrentDate(newDate);
   };
 
+  /**
+   * Gets a month and sets month to it
+   * 
+   * @param {String} option Month
+   */
+  const handleMonthChange = (option) => {
+    //don't have to go through switch statement, I'm so smart
+    const date = new Date(`${option} 1, 2020`);
+    const month = date.getMonth();
+
+    const newDate = new Date(currentDate);
+    // set month and date to avoid end-of-month shennanigans
+    newDate.setMonth(month, 1);
+
+    setCurrentDate(newDate);
+  }
+/**
+ * Even simpler than month change woo
+ * 
+ */
+  const handleYearChange = (year) => {
+    //don't have to go through switch statement, I'm so smart
+
+    const newDate = new Date(currentDate);
+    //avoid end-of-month shennanigans in weird case of leap-year
+    newDate.setDate(1);
+    newDate.setFullYear(year);
+    setCurrentDate(newDate);
+  }
+
   // Initial calendar generation
 
   useEffect(() => {
@@ -91,6 +121,8 @@ const CalendarContextProvider = ({ children }) => {
         weeklyCalendar,
         generateWeeklyCalendar,
         handleWeekChange,
+        handleMonthChange,
+        handleYearChange
       }}
     >
       {children}

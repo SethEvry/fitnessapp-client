@@ -16,13 +16,7 @@ function App() {
         {weeklyCalendar.length === 7 ? (
           <>
             <Header />
-            <Column day={weeklyCalendar[0]} />
-            <Column day={weeklyCalendar[1]} />
-            <Column day={weeklyCalendar[2]} />
-            <Column day={weeklyCalendar[3]} />
-            <Column day={weeklyCalendar[4]} />
-            <Column day={weeklyCalendar[5]} />
-            <Column day={weeklyCalendar[6]} />
+            {weeklyCalendar.map(day => <Column day={day} />)}
             <Footer />
           </>
         ) : (
