@@ -26,17 +26,19 @@ const reset = () => {
   setReps("");
   setWeight("");
   setTime("");
+  focusEl.current.focus();
 }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (reps && weight && type === "WEIGHT") {
-      setSets((oldSets) => [...oldSets, `${reps} - ${weight} lbs`]);
+      const fWeight = parseInt(weight)? weight + ' lbs' : weight;
+      setSets((oldSets) => [...oldSets, `x${reps} - ${fWeight}`]);
       reset();
     } else if (time && type === "TIME") {
       setSets((oldSets) => [...oldSets, `${time} seconds`]);
       reset();
-    } else if(sets.length) {
+    } else if(sets.length && (!reps && !weight && !time)) {
       reset();
       setStep(2);
     } else {
