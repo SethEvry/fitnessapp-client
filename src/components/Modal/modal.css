@@ -42,3 +42,17 @@
     border-radius: 50%;
     
 }
+
+.modal-inner input[type="text"]{
+    border: 2px solid var(--border-color);
+    margin:0 auto;
+    color:var(--text-color);
+    outline: none;
+    border-radius: 0.5em;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+.modal-inner input[type="text"]:focus {
+    border-width: 3px;
+}

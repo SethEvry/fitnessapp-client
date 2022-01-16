@@ -1,3 +1,33 @@
 .setsnreps_button {
     visibility: hidden;
+    align-self: flex-end;
+    width: 100%;
+}
+
+.setsnreps_form {
+    display:flex;
+    height:100%;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.setsnreps_form select {
+    padding: 20px;
+    border:2px solid var(--border-color);
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+
+}
+
+.setsnreps_weight-container{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.setsnreps_weight {
+    max-width: 240px;
+    margin: 0 auto;
 }

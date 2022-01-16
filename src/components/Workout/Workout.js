@@ -4,9 +4,16 @@ import { useContext } from "react";
 import { Modal } from "..";
 import { ModalContext } from "../../context/ModalContext";
 import { uid } from "uid";
+import { WorkoutContext } from "../../context/WorkoutContext";
 
 export default function Workout({ workOut }) {
   const { state, dispatch } = useContext(ModalContext);
+  const { setWorkOuts } = useContext(WorkoutContext);
+
+  const handleDelete = () => {
+    setWorkOuts(oldWorkOuts => oldWorkOuts.filter((oldWorkout) => oldWorkout !== workOut))
+    dispatch({type: "CLOSE"});
+  }
 
   return (
     <>
@@ -29,6 +36,7 @@ export default function Workout({ workOut }) {
           {workOut.description 
           ?<p className="workout_description">{workOut.description}</p>
           : null}
+          <button onClick={handleDelete}>Delete</button>
         </Modal>
       ) : null}
     </>

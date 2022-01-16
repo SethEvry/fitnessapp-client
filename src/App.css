@@ -1,39 +1,59 @@
 :root {
-    --bg-color: #6F523B;
-    --bg2-color: #A56336;
-    --text-color:#143642;
-    --border-color: #201209;
-    --ed-color: #935E38;
-    --cd-color: #143642;
-    --hl-color: #b77035;
+  --bg-color: #6f523b;
+  --bg2-color: #a56336;
+  --text-color: #143642;
+  --border-color: #201209;
+  --ed-color: #935e38;
+  --cd-color: #143642;
+  --hl-color: #b77035;
 }
 * {
-    box-sizing: border-box;
-    background-color: var(--bg2-color);
-    color:var(--text-color);
+  box-sizing: border-box;
+  background-color: var(--bg2-color);
+  color: var(--text-color);
+}
+input::placeholder {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+button {
+  padding: 0.5em 2em;
+  border: 0.16em solid rgba(255, 255, 255, 0);
+  border-radius: 1em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--text-color);
+  background-color: var(--ed-color);
+  text-align: center;
+  transition: all 0.2s;
+}
+button:hover {
+  border-color: var(--border-color);
 }
 
 svg {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .App {
-    display:flex;
-    height: 100vh;
-    align-items: center;
-    background-color: var(--bg-color);
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  background-color: var(--bg-color);
 }
 .container {
-    margin: 0 auto;
-    max-width: 1400px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr) ;
-    grid-template-rows: auto;
-    grid-template-areas: 
+  margin: 0 auto;
+  max-width: 1400px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas:
     "header header header header header header header"
     "sunday monday tuesday wednesday thursday friday saturday"
     "footer footer footer footer footer footer footer";
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 15px var(--border-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 15px var(--border-color);
 }

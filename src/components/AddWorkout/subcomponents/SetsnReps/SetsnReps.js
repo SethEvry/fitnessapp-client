@@ -62,7 +62,7 @@ const reset = () => {
             </div>
           ))
         : ""}
-      <form onSubmit={handleSubmit}>
+      <form className="setsnreps_form" onSubmit={handleSubmit}>
         {isError
           ? errors.map((error) => <p key={error}>You are Missing: {error}</p>)
           : null}
@@ -73,8 +73,9 @@ const reset = () => {
         {
           {
             WEIGHT: (
-              <>
+              <div className="setsnreps_weight-container">
                 <input
+                className="setsnreps_weight"
                   type="text"
                   placeholder="reps"
                   value={reps}
@@ -85,11 +86,12 @@ const reset = () => {
                 <h1>-</h1>
                 <input
                   type="text"
+                  className="setsnreps_weight"
                   placeholder="Weight (Pounds)"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
                 />
-              </>
+              </div>
             ),
             TIME: (
               <input
