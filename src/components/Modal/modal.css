@@ -36,10 +36,10 @@
 }
 .modal-close {
     position:absolute;
-    top:-15px;
-    right:-15px;
-    background-color: white;
+    top:-12px;
+    right:-12px;
     border-radius: 50%;
+    border: 2px solid var(--text-color);
     
 }
 
