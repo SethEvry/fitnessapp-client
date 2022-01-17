@@ -33,7 +33,7 @@ const reset = () => {
     e.preventDefault();
     if (reps && weight && type === "WEIGHT") {
       const fWeight = parseInt(weight)? weight + ' lbs' : weight;
-      setSets((oldSets) => [...oldSets, `x${reps} - ${fWeight}`]);
+      setSets((oldSets) => [...oldSets, {id: uid(), message:`x${reps} - ${fWeight}`}]);
       reset();
     } else if (time && type === "TIME") {
       setSets((oldSets) => [...oldSets, `${time} seconds`]);
@@ -51,11 +51,11 @@ const reset = () => {
       {sets.length
         ? sets.map((set) => (
             <div key={uid()} className="setsnreps_setlist">
-              <h2>{set}</h2>
+              <h2>{set.message}</h2>
               <AiOutlineMinusCircle
                 onClick={() =>
                   setSets((oldSets) =>
-                    oldSets.filter((setToKeep) => setToKeep !== set)
+                    oldSets.filter((setToKeep) => setToKeep.id !== set.id)
                   )
                 }
               />
