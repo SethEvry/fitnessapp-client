@@ -4,6 +4,12 @@
     width: 100%;
 }
 
+.setsnreps_setlist {
+    display:flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
 .setsnreps_form {
     display:flex;
     height:100%;

@@ -50,7 +50,7 @@ const reset = () => {
     <>
       {sets.length
         ? sets.map((set) => (
-            <div key={uid()}>
+            <div key={uid()} className="setsnreps_setlist">
               <h2>{set}</h2>
               <AiOutlineMinusCircle
                 onClick={() =>
