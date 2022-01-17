@@ -29,7 +29,8 @@ export default function Workout({ workOut }) {
           {workOut.sets  ? (
             <div className="sets">        
                 {workOut.sets.map((set) => (
-                  <p key={set.id || uid()}>{set.message}</p>
+                  // || operator so not to break old version
+                  <p key={set.id || uid()}>{set.message || set}</p>
                 ))}
             </div>
           ) : null}
