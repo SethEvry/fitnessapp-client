@@ -1,11 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { uid } from "uid";
 
-//react-icons
-import { AiOutlineEdit } from "react-icons/ai";
-import { BsCheck2All } from "react-icons/bs"
-import { IconContext } from "react-icons/lib";
-
 // style
 import "./calendar.css";
 
@@ -18,20 +13,34 @@ import { ModalContext } from "../../context/ModalContext";
 
 const Calendar = () => {
   //Calendar Context
-  const { currentDate, setCurrentDate, calendar, today, handleMonthChange, handleYearChange } =
-    useContext(CalendarContext);
+  const {
+    currentDate,
+    setCurrentDate,
+    calendar,
+    today,
+    handleMonthChange,
+    handleYearChange,
+  } = useContext(CalendarContext);
 
   //Modal Reducer
   const { dispatch } = useContext(ModalContext);
 
   const [blocks, setBlocks] = useState([]);
 
-  const [isEditingMonth, setIsEditingMonth] = useState(false);
-  const [isEditingYear, setIsEditingYear] = useState(false);
+  const [month, setMonth] = useState(
+    currentDate.toLocaleDateString("en-US", { month: "long" })
+  );
+  const [year, setYear] = useState(currentDate.getFullYear());
 
-  const [month, setMonth] = useState(currentDate.toLocaleDateString("en-US", { month: "long" }))
-  const [year, setYear] = useState(currentDate.getFullYear())
-
+  //year array for select
+  const years = () => {
+    const cYear = today.getFullYear();
+    let years = [];
+    for (let i = -10; i < 1; i++) {
+      years = [...years, cYear + i];
+    }
+    return years;
+  };
   //for bar above
   const weekdays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
@@ -43,22 +52,6 @@ const Calendar = () => {
     },
     [setCurrentDate, dispatch]
   );
-
-  //Based on month/year changes month/year
-  const handleSubmit = (e, option) => {
-    e.preventDefault();
-    if(option === "MONTH") {
-      handleMonthChange(month);
-      setIsEditingMonth(false);
-    } else {
-      if(parseInt(year)) {
-      handleYearChange(year);
-      setIsEditingYear(false);
-      } else {
-        throw new Error('Year must be a number!')
-      }
-    }
-  }
 
   /**
    * creates a 2 dimension array of <divs> for the calendar
@@ -123,46 +116,45 @@ const Calendar = () => {
       {blocks.length ? (
         <div className="calendar_grid">
           <div className="calendar_header">
-          {isEditingMonth 
-            ? <form onSubmit={(e)=> handleSubmit(e,"MONTH")}>
-            
-              <select defaultValue={month} onChange={e => setMonth(e.target.value)}>
-                {/* <option value={month} selected hidden>{month}</option> */}
-                <option value="January">January</option>
-                <option value="February">February</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
-              <button><BsCheck2All /></button>
-            </form>
-            :(<h2>
-            
-              {month}
-              <IconContext.Provider  value={{ size: "0.6em", className: "calendar_edit" }}>
-                <AiOutlineEdit onClick={() =>!isEditingYear ? setIsEditingMonth(true): null} />
-              </IconContext.Provider>
-            </h2>)}
-            {isEditingYear
-            ? <form onSubmit={(e)=> handleSubmit(e,"YEAR")}>
-            <input type="text" value={year} onChange={e => setYear(e.target.value)} />
-            </form>
-            :(
-            <h2>
-              {year}
-              <IconContext.Provider value={{ size: "0.6em", className: "calendar_edit" }}>
-                <AiOutlineEdit onClick={() =>!isEditingMonth ? setIsEditingYear(true): null} />
-              </IconContext.Provider>
-            </h2>)}
+            <select
+              defaultValue={month}
+              onChange={(e) => {
+                setMonth(e.target.value);
+                handleMonthChange(e.target.value);
+              }}
+            >
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+            <select
+              defaultValue={year}
+              onChange={(e) => {
+                setYear(e.target.value);
+                handleYearChange(e.target.value);
+              }}
+            >
+              {years().map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="calendar_weekdays">{weekdays.map(weekday => <p key={uid()}>{weekday}</p> )}</div>
+          <div className="calendar_weekdays">
+            {weekdays.map((weekday) => (
+              <p key={uid()}>{weekday}</p>
+            ))}
+          </div>
           <div className="calendar_main">{blocks.map((block) => block)}</div>
         </div>
       ) : (
