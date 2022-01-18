@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./app.css";
+import "./App.css";
 import { uid } from 'uid'
 
 //components
