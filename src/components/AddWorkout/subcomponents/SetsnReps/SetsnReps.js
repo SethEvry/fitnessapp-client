@@ -43,7 +43,7 @@ const reset = () => {
       setStep(2);
     } else {
       setIsError(true);
-      setErrors([reps || "reps", weight || "weight"]);
+      setErrors(type ==="WEIGHT" ? [!reps ? "reps" : null, !weight? "weight" : null] : !time ? ["time"] : [null]);
     }
   };
   return (
@@ -64,7 +64,7 @@ const reset = () => {
         : ""}
       <form className="setsnreps_form" onSubmit={handleSubmit}>
         {isError
-          ? errors.map((error) => <p key={error}>You are Missing: {error}</p>)
+          ? errors.map((error) =>error ? <p key={error}>You are Missing: {error}</p> : null)
           : null}
         <select defaultValue="WEIGHT" onChange={(e) => setType(e.target.value)}>
           <option value="WEIGHT">Weight</option>
