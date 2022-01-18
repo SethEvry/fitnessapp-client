@@ -22,6 +22,10 @@
     top: 2px;
     right:-15px;
 }
+
+.calendar_current-year {
+    background-color: var(--bg-color);
+}
 .calendar_weekdays {
     display:flex;
     width: 100%;

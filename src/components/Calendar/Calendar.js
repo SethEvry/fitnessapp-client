@@ -144,7 +144,7 @@ const Calendar = () => {
               }}
             >
               {years().map((year) => (
-                <option key={year} value={year}>
+                <option key={year} value={year} className={today.getFullYear() === year ? "calendar_current-year" : ""}>
                   {year}
                 </option>
               ))}

@@ -17,6 +17,19 @@ input::placeholder {
     opacity: 0.8;
 }
 
+select {
+  padding: 10px;
+  border:2px solid var(--border-color);
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  outline:none;
+}
+
+select:focus {
+  border-width: 3px;
+}
+
 button {
   padding: 0.5em 2em;
   border: 0.16em solid rgba(255, 255, 255, 0);
