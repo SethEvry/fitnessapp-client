@@ -63,6 +63,10 @@
     display: flex;
     position: relative;
 }
+.calendar_block:hover {
+    border-width: 2px;
+    font-weight: 600;
+}
 
 .extra_block {
     border-color: var(--ed-color);
