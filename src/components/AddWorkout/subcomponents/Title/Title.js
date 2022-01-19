@@ -53,7 +53,7 @@ const Title = ({ title, setTitle, setStep }) => {
                 key={uid()}
                 onClick={() => {
                   setTitle(workOut);
-                  focusEl.current.focus();
+                  setStep(1);
                 }}
                 className="addworkout_suggestion"
               >
