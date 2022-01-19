@@ -1,11 +1,19 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { uid } from "uid";
+import "./title.css";
+
+//context
+import { WorkoutContext } from "../../../../context/WorkoutContext";
 
 const Title = ({ title, setTitle, setStep }) => {
   const [isError, setIsError] = useState(false);
-  const focusEl = useRef("")
-  useEffect(()=>{
-    focusEl.current.focus()
-  }, [])
+  const { workOuts } = useContext(WorkoutContext);
+
+  //focus ref
+  const focusEl = useRef("");
+  useEffect(() => {
+    focusEl.current.focus();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,8 +25,9 @@ const Title = ({ title, setTitle, setStep }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      {isError ? <p>It needs a title!</p> : null}
+    <>
+      <form className="addworkout_title" onSubmit={handleSubmit}>
+        {isError ? <p>It needs a title!</p> : null}
         <input
           type="text"
           placeholder="Title"
@@ -26,7 +35,27 @@ const Title = ({ title, setTitle, setStep }) => {
           ref={focusEl}
           onChange={(e) => setTitle(e.target.value)}
         />
-    </form>
+      </form>
+      {workOuts.length ? (
+        <div className="addworkout_suggestion-container">
+          {workOuts
+            .filter((workOut) => workOut.title.includes(title))
+            .reduce(
+              (newWorkOuts, workOut) =>
+                !newWorkOuts.includes(workOut.title)
+                  ? [...newWorkOuts, workOut.title]
+                  : [...newWorkOuts],
+              []
+            )
+            .slice(0, 5)
+            .map((workOut) => (
+              <div key={uid()} onClick={() => setTitle(workOut)} className="addworkout_suggestion">
+                <p>{workOut}</p>
+              </div>
+            ))}
+        </div>
+      ) : null}
+    </>
   );
 };
 

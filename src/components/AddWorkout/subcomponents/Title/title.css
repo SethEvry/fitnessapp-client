@@ -1,0 +1,25 @@
+
+.addworkout_suggestion-container {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.addworkout_suggestion {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    padding: 4px;
+    margin: 2px;
+}
+
+.addworkout_suggestion:hover {
+    background-color: var(--hl-color);
+    cursor: pointer;
+    border-width: 2px;
+}
+.addworkout_suggestion p {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
