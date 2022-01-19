@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { uid } from "uid";
+import "./addworkout.css"
 
 //context
 import { ModalContext } from "../../context/ModalContext";
@@ -38,7 +39,7 @@ export default function AddWorkout({ date }) {
     <Modal>
       {step > 0 ? (
         <IconContext.Provider
-          value={{ className: "header_left", size: "1.5em" }}
+          value={{ className: "addworkout_back", size: "1.5em" }}
         >
           <ImArrowLeft onClick={() => setStep((oldStep) => oldStep - 1)} />
         </IconContext.Provider>
