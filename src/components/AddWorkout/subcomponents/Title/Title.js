@@ -49,7 +49,14 @@ const Title = ({ title, setTitle, setStep }) => {
             )
             .slice(0, 5)
             .map((workOut) => (
-              <div key={uid()} onClick={() => setTitle(workOut)} className="addworkout_suggestion">
+              <div
+                key={uid()}
+                onClick={() => {
+                  setTitle(workOut);
+                  focusEl.current.focus();
+                }}
+                className="addworkout_suggestion"
+              >
                 <p>{workOut}</p>
               </div>
             ))}
