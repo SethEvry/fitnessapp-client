@@ -4,7 +4,13 @@
     padding: 8px 4px;
     margin: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s;
+
+}
+.workout:hover {
+    background-color: var(--hl-color);
     cursor: pointer;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
 .workout-title {

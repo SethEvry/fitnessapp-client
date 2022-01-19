@@ -6,6 +6,7 @@
   --ed-color: #935e38;
   --cd-color: #143642;
   --hl-color: #b77035;
+  --hl2-color: #bf8d64;
 }
 * {
   box-sizing: border-box;
@@ -46,9 +47,11 @@ button:hover {
   border-color: var(--border-color);
 }
 
-svg {
+svg:hover {
   cursor: pointer;
+  fill: var(--hl2-color)
 }
+
 
 .App {
   display: flex;
