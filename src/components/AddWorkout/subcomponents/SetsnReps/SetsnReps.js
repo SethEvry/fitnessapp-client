@@ -39,7 +39,10 @@ const SetsnReps = ({ sets, setSets, setStep }) => {
       ]);
       reset();
     } else if (time && type === "TIME") {
-      setSets((oldSets) => [...oldSets, `${time} seconds`]);
+      setSets((oldSets) => [
+        ...oldSets,
+        { id: uid(), message: `${time} seconds` },
+      ]);
       reset();
     } else if (sets.length && !reps && !weight && !time) {
       reset();
@@ -91,13 +94,16 @@ const SetsnReps = ({ sets, setSets, setStep }) => {
               </div>
             ),
             TIME: (
-              <input
-                type="text"
-                placeholder="time (seconds)"
-                value={time}
-                ref={focusEl}
-                onChange={(e) => setTime(e.target.value)}
-              />
+              <div className="setsnreps_time-container">
+                <input
+                  className="setsnreps_time"
+                  type="text"
+                  placeholder="time (seconds)"
+                  value={time}
+                  ref={focusEl}
+                  onChange={(e) => setTime(e.target.value)}
+                />
+              </div>
             ),
           }[type]
         }

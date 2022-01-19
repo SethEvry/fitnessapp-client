@@ -46,3 +46,12 @@
     max-width: 240px;
     margin: 0 auto;
 }
+.setsnreps_time-container {
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.setsnreps_time {
+    max-width: 240px;
+    margin: 0 auto;
+}
