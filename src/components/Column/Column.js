@@ -14,10 +14,12 @@ import { WorkoutContext } from "../../context/WorkoutContext";
 import { CalendarContext } from "../../context/CalendarContext";
 
 export default function Column({ day }) {
+  
   const dayName = day
     .toLocaleDateString("en-US", { weekday: "long" })
     .toLowerCase();
   const date = day.toISOString().slice(0, 10);
+
   const { workOuts } = useContext(WorkoutContext);
   const { dispatch } = useContext(ModalContext);
   const { today } = useContext(CalendarContext);
